@@ -1,4 +1,4 @@
-{% load static %}
+{% extends 'django_task/polls/templates/base.html' %}
 <!DOCTYPE html>
 
 <html lang="ru">
@@ -6,14 +6,13 @@
     <title>Домашняя страница</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'css/polls.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
     <meta charset="UTF-8">
 </head>
 <body>
     <div class="page-header">
         <h1><a href="/">Лента новойстей с использованием Django</a></h1>
-        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        <h2><a href="/">Блог пользователя</a></h2>
     </div>
     <div class="content container">
         <div class="row">

@@ -13,7 +13,7 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect('/')
         else:
             login_error = "User not exist"
             context = {"login_error": login_error}
