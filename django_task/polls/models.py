@@ -1,21 +1,24 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 
 class Post(models.Model):
-    #def __init__(self, title, date, text):
     title = models.CharField(max_length=50)
     date = models.DateTimeField(auto_now_add=True)
-    text = models.CharField(max_length=200)
-    #article_author = models.ForeignKey(User)
+    published_date = models.DateTimeField(blank=True, null=True)
+    text = models.TextField()
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     article_status = models.IntegerField(default=0)      # отметка о прочтении = 1
 
-
     def __str__(self):
-        return self.title
+        return (self.title)
 
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
 
 '''    
 class Blog (models.Model):
