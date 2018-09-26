@@ -20,7 +20,7 @@ class Post(models.Model):
         self.published_date = timezone.now()
         self.save()
 
-'''    
+'''
 class Blog (models.Model):
     def __init__(self):
         super.__init__()

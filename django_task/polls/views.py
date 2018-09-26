@@ -3,8 +3,10 @@ from django.http import HttpResponse
 from polls.models import Post
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
-from polls.forms import PostForm
 from django.shortcuts import redirect
+from django.contrib import auth
+from polls.forms import PostForm
+
 
 # Create your views here.
 '''
@@ -13,10 +15,13 @@ def index(request):
 '''
 def index(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'index.html', {'posts': posts})
+    username = auth.get_user(request)
+    context = {'posts': posts}
+    return render(request, 'index.html', context)
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    username = auth.get_user(request).username
     return render(request, 'post_detail.html', {'post': post})
 
 def post_new(request):
@@ -31,9 +36,4 @@ def post_new(request):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
-
-
     return render(request, 'post_edit.html', {'form': form})
-
-    #return render(request, "index.html", {})
-

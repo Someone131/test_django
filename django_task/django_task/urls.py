@@ -28,4 +28,5 @@ django.setup()
 urlpatterns = [
     url(r'^', include('polls.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^', include('login_auth.urls')),
 ]
