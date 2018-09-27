@@ -22,16 +22,9 @@ class Post(models.Model):
 
 '''
 class Blog (models.Model):
-    def __init__(self):
-        super.__init__()
-        self.news_feed = {}  # словарь с лентой новойстей, где ключ - тема, значение - текст
-        self.subscribers = {}  # словарь с подписчиками, где где ключ - имя пользователя - подписчика,
-        # значение - электронная почта подписчика
-        self.subscribed = {}  # словарь с пользователями, на которые подписан, где где ключ - имя пользователя,
-        # значение - электронная почта пользователя
-        self.posts = {} # словарь с постами пользователя
-
-
+    subscribers = ()
+    subscribed = ()
+    
     def send_message(self, message, user):  
         pass
 

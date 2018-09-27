@@ -14,9 +14,7 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-
             posts = Post.objects.filter(author=user).order_by('-published_date')
-
             context = {'posts': posts}
             return render(request, 'blog.html', context)
         else:
