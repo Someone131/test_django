@@ -14,7 +14,7 @@ def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 '''
 def index(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     username = auth.get_user(request)
     context = {'posts': posts}
     return render(request, 'index.html', context)

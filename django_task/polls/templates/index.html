@@ -23,7 +23,7 @@
                         </div>
                         <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
                         <p>{{ post.text|linebreaksbr }}
-                        <p>{{ post.author|linebreaksbr }}</p>
+                        <p><a href="{% url 'post_detail' pk=post.pk %}">{{ post.author }}</a></p>
                     </div>
                 {% endfor %}
             {% endblock %}

@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404  # render page, return da
 from django.http import HttpResponseRedirect
 #from django.core.urlresolvers import reverse
 from django.contrib import auth
+from polls.models import Post
 
 # Create your views here.
 def login(request):
@@ -13,13 +14,17 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return HttpResponseRedirect("/")
+
+            posts = Post.objects.filter(author=user).order_by('-published_date')
+
+            context = {'posts': posts}
+            return render(request, 'blog.html', context)
         else:
             login_error = "User not exist"
             context = {"login_error": login_error}
-            return render(request, 'login.html', context)
+            return render(request, 'login_err.html', context)
     else:
-        return render(request, 'login.html', context)
+        return render(request, 'login_err.html', context)
 
 
 def logout(request):
