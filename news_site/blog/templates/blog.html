@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Блог пользователя {{user}}</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/polls.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="page-header">
+        <h1><a href="/"><span class="glyphicon glyphicon-home"></span></a></h1>
+        <h2>Блог пользователя {{user}}</h2>
+
+        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+            {% block content %}
+                {% for t in posts %}
+                    {% for post in t %}
+                        <div class="post">
+                            <div class="date">
+                                {{ post.published_date }}
+                            </div>
+                            <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+                            <p>{{ post.text|linebreaksbr }}
+                            <p>{{ post.author|linebreaksbr }}</p>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+    <title>Управление подпиской</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/polls.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="page-header">
+        <h1><a href="/">Управление подпиской</a></h1>
+    </div>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+            {% block content %}
+                <p>{{ user }} {{ massage }}<p>
+                <a href="{% url 'subscribe' %}" class="top-menu"><span class="glyphicon glyphicon-ok"></span></a>
+                <a href="{% url 'blog_Look' %}" class="top-menu"><span class="glyphicon glyphicon-remove"></span></a>
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
